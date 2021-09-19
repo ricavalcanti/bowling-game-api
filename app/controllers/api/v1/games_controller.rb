@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'json'
+
 module Api
   module V1
     # Controller for Game model
@@ -10,12 +12,12 @@ module Api
       def index
         games = Game.all
 
-        render json: games
+        render json: games.to_json(include: :frames)
       end
 
       # GET /games/1
       def show
-        render json: @game
+        render json: @game.to_json(include: :frames)
       end
 
       private
