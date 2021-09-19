@@ -10,6 +10,7 @@ one:
   second_ball_score: 1
   extra_ball_score: 1
   frame_number: 1
+  game: one
 
 two:
   frame_score: 1
@@ -21,3 +22,4 @@ two:
   second_ball_score: 1
   extra_ball_score: 1
   frame_number: 1
+  game: two
