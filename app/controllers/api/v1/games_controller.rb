@@ -8,9 +8,9 @@ module Api
 
       # GET /games
       def index
-        @games = Game.all
+        games = Game.all
 
-        render json: @games
+        render json: games
       end
 
       # GET /games/1
