@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'json'
-
 module Api
   module V1
     # Controller for Game model
@@ -15,17 +13,40 @@ module Api
         render json: games.to_json(include: :frames)
       end
 
-      # GET /games/1
+      # GET /games/{id}
       def show
         render json: @game.to_json(include: :frames)
       end
 
+      # POST /games
+      # Should create a game with the given params
+      def create
+        @game = Game.create({ total_score: game_params[:total_score] })
+        create_game_frames(@game, game_params[:frames])
+
+        render json: { data: @game.to_json(include: :frames) }, status: :created
+      end
+
       private
 
-      # Use callbacks to share common setup or constraints between actions.
+      def game_params
+        params.permit(:total_score, :frames)
+      end
+
       def find_game
         @game = Game.find(params[:id])
       end
+
+      def create_game_frames(game, frames)
+        if frames.nil?
+          Frame.create_empty_frame(game, 1)
+        else
+          frames.each do |frame|
+            Frame.create({ **frame, game: game })
+          end
+        end
+      end
+
     end
   end
 end

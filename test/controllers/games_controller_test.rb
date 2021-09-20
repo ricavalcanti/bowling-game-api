@@ -16,4 +16,12 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
     get api_v1_games_url(@game)
     assert_response :success
   end
+
+  test 'should create an empty game' do
+    assert_difference('Game.count') do
+      post api_v1_games_url
+    end
+
+    assert_response :success
+  end
 end
