@@ -1,6 +1,12 @@
 class Frame < ApplicationRecord
   belongs_to :game
 
+  enum frame_type: {
+    normal: 0,
+    spare: 1,
+    strike: 2
+  }
+
   def self.create_empty_frame(game, frame_number)
     create(
       {
