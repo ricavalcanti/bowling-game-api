@@ -10,6 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2021_09_19_174241) do
 
+  create_table "frames", force: :cascade do |t|
+    t.integer "frame_score", default: 0
+    t.integer "waiting_how_much_throws", default: 2
+    t.integer "frame_number", default: 1
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "game_id", null: false
+    t.index ["game_id"], name: "index_frames_on_game_id"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.integer "total_score"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "frames", "games"
 end
