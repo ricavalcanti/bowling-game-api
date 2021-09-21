@@ -13,13 +13,8 @@ class Frame < ApplicationRecord
       {
         frame_number: frame_number,
         frame_score: 0,
-        remain_balls: 2,
-        is_strike: false,
-        is_spare: false,
-        waiting_how_much_balls: 0,
-        first_ball_score: 0,
-        second_ball_score: 0,
-        extra_ball_score: 0,
+        frame_type: 0,
+        waiting_how_much_throws: 2,
         game: game
       }
     )

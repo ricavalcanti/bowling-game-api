@@ -1,25 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  frame_score: 1
-  remain_balls: 1
-  is_strike: false
-  is_spare: false
-  waiting_how_much_balls: 1
-  first_ball_score: 1
-  second_ball_score: 1
-  extra_ball_score: 1
+  frame_score: 5
+  waiting_how_much_throws: 0
   frame_number: 1
+  frame_type: 0
   game: one
 
 two:
-  frame_score: 1
-  remain_balls: 1
-  is_strike: false
-  is_spare: false
-  waiting_how_much_balls: 1
-  first_ball_score: 1
-  second_ball_score: 1
-  extra_ball_score: 1
-  frame_number: 1
-  game: two
+  frame_score: 0
+  waiting_how_much_throws: 2
+  frame_number: 2
+  frame_type: 0
+  game: one
