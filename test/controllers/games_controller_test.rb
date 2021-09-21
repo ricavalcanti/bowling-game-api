@@ -24,4 +24,13 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
   end
+
+
+  test 'should destroy game' do
+    assert_difference('Game.count', -1) do
+      delete api_v1_game_url(@game), as: :json
+    end
+
+    assert_response 204
+  end
 end

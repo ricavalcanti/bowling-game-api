@@ -4,7 +4,7 @@ module Api
   module V1
     # Controller for Game model
     class GamesController < ApplicationController
-      before_action :find_game, only: %i[show]
+      before_action :find_game, only: %i[show destroy]
 
       # GET /games
       def index
@@ -25,6 +25,12 @@ module Api
         create_game_frames(@game, game_params[:frames])
 
         render json: { data: @game.to_json(include: :frames) }, status: :created
+      end
+
+      # DELETE /games/{id}
+      def destroy
+        Frame.destroy_by(game: @game)
+        @game.destroy
       end
 
       private
