@@ -23,6 +23,9 @@ module Api
         @throw = Throw.new(throw_params)
 
         if @throw.save
+          game = Game.find(params[:game][:id])
+          game.fill_frames_with_throw(@throw)
+
           render json: @throw, status: :created
         else
           render json: @throw.errors, status: :unprocessable_entity

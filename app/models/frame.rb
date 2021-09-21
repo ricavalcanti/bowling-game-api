@@ -8,6 +8,23 @@ class Frame < ApplicationRecord
     strike: 2
   }
 
+  def add_throw(throw)
+    if self.should_add_throw
+      self.throws << throw
+      self.frame_score += throw.knocked_pins
+      self.waiting_how_much_throws -= 1
+      self.save
+    end
+  end
+
+  def update_type
+    if self.frame_score == 10
+      self.type = self.waiting_how_much_throws.zero? ? 1 : 2
+      self.waiting_how_much_throws = type.number
+      self.save
+    end
+  end
+
   def self.create_empty_frame(game, frame_number)
     create(
       {
@@ -18,5 +35,11 @@ class Frame < ApplicationRecord
         game: game
       }
     )
+  end
+
+  private
+
+  def should_add_throw
+    !self.waiting_how_much_throws.zero?
   end
 end
