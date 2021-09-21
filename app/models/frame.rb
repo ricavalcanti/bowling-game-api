@@ -1,5 +1,6 @@
 class Frame < ApplicationRecord
   belongs_to :game
+  has_and_belongs_to_many :throws
 
   enum frame_type: {
     normal: 0,

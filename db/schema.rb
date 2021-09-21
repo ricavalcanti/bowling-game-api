@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_21_010510) do
+ActiveRecord::Schema.define(version: 2021_09_21_010748) do
 
   create_table "frames", force: :cascade do |t|
     t.integer "frame_score", default: 0
@@ -21,6 +21,12 @@ ActiveRecord::Schema.define(version: 2021_09_21_010510) do
     t.integer "game_id", null: false
     t.integer "frame_type", default: 0
     t.index ["game_id"], name: "index_frames_on_game_id"
+  end
+
+  create_table "frames_throws", id: false, force: :cascade do |t|
+    t.integer "throw_id", null: false
+    t.integer "frame_id", null: false
+    t.index ["throw_id", "frame_id"], name: "index_frames_throws_on_throw_id_and_frame_id"
   end
 
   create_table "games", force: :cascade do |t|
