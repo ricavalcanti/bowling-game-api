@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_20_233618) do
+ActiveRecord::Schema.define(version: 2021_09_21_010510) do
 
   create_table "frames", force: :cascade do |t|
     t.integer "frame_score", default: 0
@@ -25,6 +25,12 @@ ActiveRecord::Schema.define(version: 2021_09_20_233618) do
 
   create_table "games", force: :cascade do |t|
     t.integer "total_score"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "throws", force: :cascade do |t|
+    t.integer "knocked_pins", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
