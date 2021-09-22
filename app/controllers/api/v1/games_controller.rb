@@ -22,7 +22,7 @@ module Api
       # Should create a game with the given params
       def create
         @game = Game.create({ total_score: game_params[:total_score] })
-        create_game_frames(@game, game_params[:frames])
+        @game.create_game_frames(game_params[:frames])
 
         render json: { data: @game.to_json(include: :frames) }, status: :created
       end
@@ -42,17 +42,6 @@ module Api
       def find_game
         @game = Game.find(params[:id])
       end
-
-      def create_game_frames(game, frames)
-        if frames.nil?
-          Frame.create_empty_frame(game, 1)
-        else
-          frames.each do |frame|
-            Frame.create({ **frame, game: game })
-          end
-        end
-      end
-
     end
   end
 end
