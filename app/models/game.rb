@@ -3,6 +3,11 @@ class Game < ApplicationRecord
 
   before_save :default_values
 
+  enum status: {
+    running: 0,
+    finished: 1
+  }
+
   def fill_frames_with_throw(throw)
     current_frame = frames.last
     current_frame.add_throw(throw)
@@ -12,6 +17,8 @@ class Game < ApplicationRecord
     frames[-3]&.add_throw(throw)
 
     Frame.create_empty_frame(self, current_frame.frame_number + 1) if should_create_new_frame
+    self.status = 1 if should_finish_game
+    save
   end
 
   def create_game_frames(frames)
@@ -32,8 +39,15 @@ class Game < ApplicationRecord
 
   def should_create_new_frame
     current_frame = frames.last
-    !current_frame.last_frame? &&
-      current_frame.normal? && current_frame.waiting_how_much_throws.zero? ||
-      current_frame.spare? || current_frame.strike?
+    !current_frame.last_frame? && (
+      current_frame.normal? &&
+        current_frame.waiting_how_much_throws.zero? ||
+        current_frame.spare? || current_frame.strike?
+    )
+  end
+
+  def should_finish_game
+    current_frame = frames.last
+    current_frame.last_frame? && current_frame.waiting_how_much_throws.zero?
   end
 end
