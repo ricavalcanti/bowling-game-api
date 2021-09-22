@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class ThrowsControllerTest < ActionDispatch::IntegrationTest
@@ -15,7 +17,7 @@ class ThrowsControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Throw.count') do
       post api_v1_throws_url, params: {
         throw: { knocked_pins: @throw.knocked_pins },
-        game: { game: @game.id }
+        game: { id: @game.id }
       }, as: :json
     end
 
