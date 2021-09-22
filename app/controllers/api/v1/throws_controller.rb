@@ -24,7 +24,7 @@ module Api
 
         if @throw.save
           game = Game.find(params[:game][:id])
-          game.fill_frames_with_throw(@throw)
+          game.update_game_with_throw(@throw)
 
           render json: @throw, status: :created
         else

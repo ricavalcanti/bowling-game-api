@@ -8,17 +8,12 @@ class Game < ApplicationRecord
     finished: 1
   }
 
-  def fill_frames_with_throw(throw)
-    current_frame = frames.last
-    current_frame.add_throw(throw)
-    current_frame.update_type
+  def update_game_with_throw(throw)
+    fill_frames(throw)
 
-    frames[-2]&.add_throw(throw)
-    frames[-3]&.add_throw(throw)
+    Frame.create_empty_frame(self, frames.last.frame_number + 1) if should_create_new_frame
 
-    Frame.create_empty_frame(self, current_frame.frame_number + 1) if should_create_new_frame
-    self.status = 1 if should_finish_game
-    save
+    update_game_status
   end
 
   def create_game_frames(frames)
@@ -49,5 +44,19 @@ class Game < ApplicationRecord
   def should_finish_game
     current_frame = frames.last
     current_frame.last_frame? && current_frame.waiting_how_much_throws.zero?
+  end
+
+  def fill_frames(throw)
+    current_frame = frames.last
+    current_frame.add_throw(throw)
+    current_frame.update_type
+
+    frames[-2]&.add_throw(throw)
+    frames[-3]&.add_throw(throw)
+  end
+
+  def update_game_status
+    self.status = 1 if should_finish_game
+    save
   end
 end
