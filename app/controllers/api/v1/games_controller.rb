@@ -15,7 +15,7 @@ module Api
 
       # GET /games/{id}
       def show
-        render json: @game.to_json(include: :frames)
+        render json: @game.to_json(include: { frames: { include: :throws } })
       end
 
       # POST /games
