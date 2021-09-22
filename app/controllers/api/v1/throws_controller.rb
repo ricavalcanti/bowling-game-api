@@ -21,7 +21,7 @@ module Api
       # POST /throws
       def create
         @throw = Throw.new(throw_params)
-        game = Game.find_by_id(params[:game][:id])
+        game = Game.find_by_id(game_params[:id])
 
         if game.nil?
           render json: {
@@ -73,6 +73,10 @@ module Api
       # Only allow a list of trusted parameters through.
       def throw_params
         params.require(:throw).permit(:knocked_pins)
+      end
+
+      def game_params
+        params.require(:game).permit(:id)
       end
     end
   end

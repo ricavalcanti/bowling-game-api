@@ -2,6 +2,7 @@
 
 one:
   total_score: 1
+  id: 1
 
 two:
   total_score: 1

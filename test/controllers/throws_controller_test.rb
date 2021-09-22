@@ -3,6 +3,7 @@ require 'test_helper'
 class ThrowsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @throw = throws(:one)
+    @game = games(:one)
   end
 
   test 'should get index' do
@@ -12,7 +13,10 @@ class ThrowsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create throw' do
     assert_difference('Throw.count') do
-      post api_v1_throws_url, params: { throw: { knocked_pins: @throw.knocked_pins } }, as: :json
+      post api_v1_throws_url, params: {
+        throw: { knocked_pins: @throw.knocked_pins },
+        game: { game: @game.id }
+      }, as: :json
     end
 
     assert_response 201
