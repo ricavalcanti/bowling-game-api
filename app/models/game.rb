@@ -13,7 +13,7 @@ class Game < ApplicationRecord
 
     Frame.create_empty_frame(self, frames.last.frame_number + 1) if should_create_new_frame
 
-    update_game_status
+    update_game_attr(throw)
   end
 
   def create_game_frames(frames)
@@ -30,6 +30,7 @@ class Game < ApplicationRecord
 
   def default_values
     self.total_score = 0 if total_score.nil?
+    self.status = 0 if status.nil?
   end
 
   def should_create_new_frame
@@ -55,8 +56,9 @@ class Game < ApplicationRecord
     frames[-3]&.add_throw(throw)
   end
 
-  def update_game_status
+  def update_game_attr(throw)
     self.status = 1 if should_finish_game
+    self.total_score += throw.knocked_pins * throw.frames.count
     save
   end
 end
