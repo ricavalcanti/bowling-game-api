@@ -21,15 +21,32 @@ module Api
       # POST /throws
       def create
         @throw = Throw.new(throw_params)
+        game = Game.find_by_id(params[:game][:id])
+
+        if game.nil?
+          render json: {
+            message: "Game with id #{params[:game][:id]} does not exists"
+          }, status: :not_found
+
+          return
+        end
+
+        if game.finished?
+          render json: {
+            message: "Game with id #{params[:game][:id]} is already finished"
+          }, status: :conflict
+
+          return
+        end
 
         if @throw.save
-          game = Game.find(params[:game][:id])
           game.update_game_with_throw(@throw)
 
           render json: @throw, status: :created
-        else
-          render json: @throw.errors, status: :unprocessable_entity
+          return
         end
+
+        render json: @throw.errors, status: :unprocessable_entity
       end
 
       # PATCH/PUT /throws/1
