@@ -1,8 +1,10 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  total_score: 1
+first_game:
+  total_score: 28
   id: 1
+  status: 0
 
-two:
-  total_score: 1
+second_game:
+  total_score: 0
+  status: 1

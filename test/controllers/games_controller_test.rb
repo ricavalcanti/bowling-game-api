@@ -4,7 +4,7 @@ require 'test_helper'
 
 class GamesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @game = games(:one)
+    @game = games(:first_game)
   end
 
   test 'should get index' do

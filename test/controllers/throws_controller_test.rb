@@ -2,8 +2,8 @@ require 'test_helper'
 
 class ThrowsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @throw = throws(:one)
-    @game = games(:one)
+    @throw = throws(:first_throw)
+    @game = games(:first_game)
   end
 
   test 'should get index' do

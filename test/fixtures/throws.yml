@@ -1,7 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  knocked_pins: 1
+first_throw:
+  id: 1
+  knocked_pins: 10
 
-two:
-  knocked_pins: 1
+second_throw:
+  id: 2
+  knocked_pins: 9
