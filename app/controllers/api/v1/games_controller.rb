@@ -10,7 +10,7 @@ module Api
       def index
         games = Game.all
 
-        render json: games.to_json(include: :frames)
+        render json: games.to_json(include: { frames: { only: :id } })
       end
 
       # GET /games/{id}
@@ -29,7 +29,7 @@ module Api
         )
         @game.create_game_frames(game_params[:frames])
 
-        render json: { data: @game.to_json(include: :frames) }, status: :created
+        render json: @game.to_json, status: :created
       end
 
       # DELETE /games/{id}
