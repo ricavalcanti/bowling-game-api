@@ -1,0 +1,240 @@
+{
+	"info": {
+		"_postman_id": "f76080f0-3035-4362-b4b6-132cd0c136ea",
+		"name": "bowling-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Throw",
+			"item": [
+				{
+					"name": "CreateThrow",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"throw\": {\n        \"knocked_pins\": 5\n    },\n    \"game\": {\n        \"id\": 11\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/throws",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"throws"
+							]
+						},
+						"description": "Should be used to throw a Ball for a given Game, if it's not finished."
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllThrows",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/throws",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"throws"
+							]
+						},
+						"description": "List all Throws"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteThrow",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/throws/119",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"throws",
+								"119"
+							]
+						},
+						"description": "Delete a given Throw"
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateThrow",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"throw\": {\n        \"knocked_pins\": 10\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/api/v1/throws/4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"throws",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Game",
+			"item": [
+				{
+					"name": "CreateEmptyGame",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/games",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"games"
+							]
+						},
+						"description": "Start a new game with empty values. After that you just need run Throws."
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllGames",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/games",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"games"
+							]
+						},
+						"description": "List all games."
+					},
+					"response": []
+				},
+				{
+					"name": "GetOneGame",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/games/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"games",
+								"1"
+							]
+						},
+						"description": "Get info for a given game."
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteGame",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/games/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"games",
+								"1"
+							]
+						},
+						"description": "Delete a given game."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
