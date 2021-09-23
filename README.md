@@ -1,24 +1,7 @@
-# README
+# Description
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is an API for a Bowling Game.
 
-Things you may want to cover:
+## Database Model
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[Bowling Game Model.pdf](https://github.com/ricavalcanti/bowling-game-api/files/7218024/Bowling.Game.-.Diagrama.ER.de.banco.de.dados.pe.de.galinha.1.pdf)
