@@ -20,8 +20,7 @@ module Api
 
       # POST /throws
       def create
-        @throw = Throw.new(throw_params)
-        game = Game.find_by_id(game_params[:id])
+        game, throw = GameService.add_throw(throw_params, game_params[:id])
 
         if game.nil?
           render json: {
@@ -39,9 +38,7 @@ module Api
           return
         end
 
-        if @throw.save
-          game.update_game_with_throw(@throw)
-
+        if throw.save
           render json: @throw, status: :created
           return
         end
