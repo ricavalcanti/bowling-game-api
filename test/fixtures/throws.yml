@@ -7,3 +7,6 @@ first_throw:
 second_throw:
   id: 2
   knocked_pins: 9
+
+perfect_throw:
+  knocked_pins: 10
