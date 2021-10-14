@@ -16,14 +16,8 @@ class Game < ApplicationRecord
     update_game_attr(throw)
   end
 
-  def create_game_frames(frames)
-    if frames.nil?
-      Frame.create_empty_frame(self, 1)
-    else
-      frames.each do |frame|
-        Frame.create({ **frame, game: self })
-      end
-    end
+  def create_game_frames
+    Frame.create_empty_frame(self, 1)
   end
 
   private

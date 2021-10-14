@@ -2,8 +2,7 @@ require 'test_helper'
 
 class ThrowsControllerTest < ActionDispatch::IntegrationTest
   test 'should get index' do
-    post api_v1_games_url
-    game = Game.last
+    game = GameService.create_game
     12.times do
       post api_v1_throws_url, params: {
         throw: { knocked_pins: 10 },

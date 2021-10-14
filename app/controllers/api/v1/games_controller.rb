@@ -21,13 +21,7 @@ module Api
       # POST /games
       # Should create a game with the given params
       def create
-        @game = Game.create(
-          {
-            total_score: game_params[:total_score],
-            status: game_params[:status]
-          }
-        )
-        @game.create_game_frames(game_params[:frames])
+        @game = GameService.create_game
 
         render json: @game.to_json, status: :created
       end
